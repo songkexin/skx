@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+
+			});
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="../js/jquery-2.2.3.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/gg.js">
+			
+		</script>
+	</head>
+
+	<body>
+		<header class="header">
+			<a href="#">
+				<img src="image/2.png" />
+			</a>
+			<p id="app">杨丽芬 可能帮忙 联系上北上广全国装甲</p>
+		</header>
+		<div class="main" id="myvue">
+			<div class="main_title">
+				<div class="ind-top">
+					<h1>欢迎加入杨丽芬医生服务站</h1>
+					<p>产看医生分享的文章、通知，也可以和村医、乡亲们聊天</p>
+				</div>
+			</div>
+
+			<div v-for="item in items">
+				<!--左文-->
+				<div class="main_left" v-if="item.type=='leftText'">
+					<p><span>{{item.dateTime}}</span></p>
+					<div class="ml_center">
+						<a href="#" class="mlc_a">
+							<img :src="item.headImage" />
+						</a>
+						<div class="mlc_right">
+							<strong>{{item.name}}</strong>
+							<div class="mlcr_b">{{item.content}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--右文-->
+				<div class="main_left main_right"  v-if="item.type=='rightText'">
+					<p><span>{{item.dateTime}}</span></p>
+					<div class="ml_center mr_center">
+						<a href="#" class="mrc_a">
+							<img :src="item.headImage" />
+						</a>
+						<div class="mlc_right mrc_left">
+							<!--<strong>{{item.name}}</strong>-->
+							<div class="mlcr_b mc_b">{{item.content}} </div>
+						</div>
+					</div>
+				</div>
+				<!--左声-->
+				<div class="main_left" v-if="item.type=='leftSound'">
+					<p><span>{{item.dateTime}}</span></p>
+					<div class="ml_center">
+						<a href="#" class="mlc_a">
+							<img :src="item.headImage" />
+						</a>
+						<div class="mlc_right">
+							<strong>{{item.name}}</strong>
+							<div class="mlcr_b mlcr_b1">
+								<span class="span1"><audio src="" autoplay="autoplay"></audio></span><strong>{{item.sound.duration}}</strong>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!--左图-->
+				<div class="main_left" v-if="item.type=='leftImage'">
+					<p><span>{{item.dateTime}}</span></p>
+					<div class="ml_center">
+						<a href="#" class="mlc_a">
+							<img :src="item.headImage" />
+						</a>
+						<div class="mlc_right">
+							<strong>{{item.name}}</strong>
+
+							<div class="mlcr_b  mlcr_b2">
+
+								<img v-for="arr in item.imageArray" :src="arr.turl" :murl="arr.murl" />
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!--右图-->
+				<div class="main_left main_right" v-if="item.type=='rightImage'">
+					<p><span>{{item.dateTime}}</span></p>
+					<div class="ml_center mr_center">
+						<a href="#" class="mrc_a">
+							<img :src="item.headImage" />
+						</a>
+						<div class="mrc_right mrc_left">
+
+							<div class="mrc_b mc_b">
+								<img v-for="arr in item.imageArray" :src="arr.turl" :murl="arr.murl" />
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="footer">
+			<a href="#" class="f-left">
+				上传 图片
+			</a>
+			<div contenteditable="true" class="text_box"></div>
+			<button>发送</button>
+		</div>
+	</body>
+
+</html>
+
+<script>
+//	$(function() {
+//			
+//			
+//
+//
+//
+//		var args = 'communication';
+//		$.ajax({
+//			type: "get",
+//			url: "http://127.0.0.1:3000/" + args,
+//			success: function(obj) {
+//				var datas = obj.posts;
+//				//console.log(datas)
+//				var myvue = new Vue({
+//					el: "#myvue",
+//					data: {
+//						items: datas,
+//
+//					}
+//				});
+//					
+//					
+//					
+//					var open=true;
+//					var cell=1;
+//					var spetach="span";
+//					var timer=null;
+//				$(document).on("click", ".mlcr_b1", function() {
+//					clearInterval(timer);
+////					console.log(this);
+//					//alert(4 )
+//					var _this=$(this);
+//					
+//					if(open==true){
+//						  _this.children('span').children("audio").attr('src','./1.mp3');
+//					timer=setInterval(function(){
+//						cell+=1;
+//						if(cell>3){
+//							cell=1;
+//						}
+//						//console.log(cell)
+//						_this.children("span").removeClass().addClass(spetach+cell);
+////						console.log(spetach+cell)
+//						open=false;
+//					},500)
+//					}else{
+//						_this.children("span").removeClass().addClass("span1");
+//						$(this).children("span").children("audio").attr("src","");
+//						open=true;
+//					}
+//					
+//				})
+//
+//			}
+//		});
+//
+//	})
+</script>
